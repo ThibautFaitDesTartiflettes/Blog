@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Comment;
+use App\Models\Category;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 
@@ -15,8 +17,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all()->take(5);
-        return view('posts.index', compact('posts'));
+        $posts = Post::all();
+        $categories = Category::all();
+        $comments = Comment::all()->count();
+
+        return view('posts.index', compact('posts', 'categories', 'comments'));
     }
 
     /**

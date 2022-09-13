@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Comment;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -24,7 +25,11 @@ class DatabaseSeeder extends Seeder
             Post::factory(rand(1,3))->create([
                 'user_id' => $user->id,
                 'category_id' => ($categories->random(1)->first())->id
-            ]);
+            ])->each(function ($post) {
+                Comment::factory(rand(1,3))->create([
+                    'post_id' => $post->id,
+                ]);
+            });
         });
     }
 }

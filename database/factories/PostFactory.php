@@ -21,7 +21,9 @@ class PostFactory extends Factory
         return [
             'title' => $this->faker->sentence(5, true),
             'content' => $this->faker->paragraph(5, true),
-            'image' => 'https://via.placeholder.com/1000'
+            'image' => 'https://via.placeholder.com/1000',
+            'views' => $this->faker->numberBetween(0, 100),
+            'likes' => $this->faker->numberBetween(0, 100)
         ];
     }
 }
