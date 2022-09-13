@@ -639,15 +639,8 @@ video {
   font-size: 1.125rem;
   line-height: 1.75rem;
 }
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-}
 .font-semibold {
   font-weight: 600;
-}
-.font-bold {
-  font-weight: 700;
 }
 .leading-7 {
   line-height: 1.75rem;
@@ -793,3 +786,4 @@ video {
     padding-right: 2rem;
   }
 }
+
