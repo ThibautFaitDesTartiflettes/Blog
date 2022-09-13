@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\Category;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use Illuminate\Http\Client\Request;
 
 class PostController extends Controller
 {
@@ -15,9 +16,14 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(int $categoryId = null)
     {
-        $posts = Post::all();
+        if ($categoryId != null) {
+            $posts = Post::where('category_id', $categoryId)->get();
+        }else{
+            $posts = Post::all();
+        }
+        
         $categories = Category::all();
         $comments = Comment::all()->count();
 

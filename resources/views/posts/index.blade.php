@@ -68,7 +68,7 @@
                             <ul class="list-disc ml-5 text-gray-300">
                                 @foreach ($categories as $cat)
                                 <li class="mb-3">
-                                    <a href="#" class="hover:ml-1 text-gray-300 hover:bg-orange-600 hover:py-2 hover:px-3 hover:rounded duration-200 ease-in-out">{{ $cat->name }}</a>
+                                    <a href="{{ route('posts.index', $cat->id) }}" class="hover:ml-1 text-gray-300 hover:bg-orange-600 hover:py-2 hover:px-3 hover:rounded duration-200 ease-in-out">{{ $cat->name }}</a>
                                 </li>
                                 @endforeach
                             </ul>

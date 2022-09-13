@@ -16,4 +16,4 @@ use App\Http\Controllers\PostController;
 
 Route::resource('posts', PostController::class)->except('index');
 
-Route::get('/', [PostController::class, 'index'])->name('posts.index');
+Route::get('/{categoryId?}', [PostController::class, 'index'])->name('posts.index');
