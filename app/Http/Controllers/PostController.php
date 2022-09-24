@@ -19,9 +19,9 @@ class PostController extends Controller
     public function index(int $categoryId = null)
     {
         if ($categoryId != null) {
-            $posts = Post::where('category_id', $categoryId)->get();
+            $posts = Post::where('category_id', $categoryId)->orderBy('created_at', 'desc')->paginate(5);
         }else{
-            $posts = Post::all();
+            $posts = Post::orderBy('created_at', 'desc')->paginate(5);
         }
         
         $categories = Category::all();

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="overflow-x-hidden bg-stone-900">
+    <div class="overflow-x-hidden bg-stone-900 min-h-[90vh]">
         <div class="px-6 py-8">
             <div class="container flex justify-between mx-auto">
                 <div class="w-full lg:w-8/12">
@@ -37,11 +37,7 @@
                     @endforeach
                     <div class="mt-8">
                         <div class="flex items-center justify-center">
-                            <a href="#" class="px-3 py-2 mx-1 font-medium text-gray-500 bg-stone-800 rounded-md cursor-not-allowed">previous</a>
-                            <a href="#" class="px-3 py-2 mx-1 font-medium text-gray-200 bg-stone-800 rounded-md hover:bg-orange-600">1</a>
-                            <a href="#" class="px-3 py-2 mx-1 font-medium text-gray-200 bg-stone-800 rounded-md hover:bg-orange-600">2</a>
-                            <a href="#" class="px-3 py-2 mx-1 font-medium text-gray-200 bg-stone-800 rounded-md hover:bg-orange-600">3</a>
-                            <a href="#" class="px-3 py-2 mx-1 font-medium text-gray-200 bg-stone-800 rounded-md hover:bg-orange-600">Next</a>
+                            {!! $posts->links('pagination::tailwind') !!}
                         </div>
                     </div>
                 </div>

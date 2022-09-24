@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         $categories = Category::factory(5)->create();
 
         User::factory(10)->create()->each(function ($user) use ($categories) {
-            Post::factory(rand(1,3))->create([
+            Post::factory(rand(1,5))->create([
                 'user_id' => $user->id,
                 'category_id' => ($categories->random(1)->first())->id
             ])->each(function ($post) {
