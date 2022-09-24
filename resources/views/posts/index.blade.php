@@ -52,7 +52,7 @@
                                         alt="avatar" class="object-cover w-10 h-10 mx-4 rounded-full">
                                     <p>
                                         <a href="#" class="mx-1 font-bold text-gray-300">Thibaut Meslin</a>
-                                        <span class="ml-7 text-sm font-light text-gray-400">Created {{ $posts->count() }} Posts</span>
+                                        <span class="ml-7 text-sm font-light text-gray-400">Created {{ $posts->total() }} Posts</span>
                                     </p>
                                 </li>
                             </ul>
