@@ -59,6 +59,10 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        if (url()->previous() !== url()->current()) {
+            Post::find($post->id)->increment('views');
+        }
+
         $comments = Comment::where('post_id', $post->id)->orderBy('created_at', 'desc')->get();
         return view('posts.show', compact('post', 'comments'));
     }
@@ -139,8 +143,8 @@ class PostController extends Controller
     public function like(int $id)
     {
         $post = Post::find($id);
-        $post->update(['likes' => $post->likes + 1]);
+        $post->increment('likes');
 
-        return redirect()->route('posts.show', $post);
+        return back();
     }
 }
