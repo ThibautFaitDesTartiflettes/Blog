@@ -12,12 +12,12 @@
                                 <span class="font-light text-gray-400">
                                     {{ $post->created_at->format('d M Y') }}
                                 </span>
-                                <a href="#"
+                                <a href="{{ route('posts.index', $post->category->id) }}"
                                     class="px-2 py-1 font-medium text-gray-50 bg-orange-600 rounded">{{ $post->category->name }}
                                 </a>
                             </div>
                             <div class="mt-2">
-                                <a href="#" class="text-2xl font-medium text-gray-200">
+                                <a class="text-2xl font-medium text-gray-200">
                                     {{ $post->title }}
                                 </a>
                                 <p class="mt-2 text-gray-300">

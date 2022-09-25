@@ -7,7 +7,7 @@ use App\Models\Comment;
 use App\Models\Category;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
-use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -94,5 +94,21 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+    }
+
+    /**
+     * Research the request string in all posts title.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $posts = Post::where('title', 'like', "%".$search."%")->orderBy('created_at', 'desc')->paginate(5);
+        $categories = Category::all();
+        $comments = Comment::all()->count();
+
+        return view('posts.index', compact('posts', 'categories', 'comments'));
     }
 }
