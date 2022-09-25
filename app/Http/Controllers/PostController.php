@@ -59,7 +59,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        $comments = Comment::where('post_id', $post->id)->orderBy('created_at', 'desc')->get();
+        return view('posts.show', compact('post', 'comments'));
     }
 
     /**
@@ -110,5 +111,22 @@ class PostController extends Controller
         $comments = Comment::all()->count();
 
         return view('posts.index', compact('posts', 'categories', 'comments'));
+    }
+
+    /**
+     * Save a comment in database.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function comment(Request $request)
+    {
+        $comment = new Comment();
+        $comment->post_id = $request->input('post_id');
+        $comment->author = $request->input('author');
+        $comment->comment = nl2br($request->input('comment'));
+        $comment->save();
+
+        return redirect()->route('posts.show', $comment->post_id);
     }
 }

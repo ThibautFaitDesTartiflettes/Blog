@@ -24,13 +24,16 @@
                                     {{ Str::limit($post->content, 120) }}
                                 </p>
                             </div>
-                            <div class="flex items-center justify-between mt-4"><a href="{{ route('posts.show', $post) }}"
+                            <div class="flex items-center justify-between mt-4">
+                                <a href="{{ route('posts.show', $post) }}"
                                     class="text-sky-700 link-underline-sky">Lire plus</a>
-                                <div><a href="{{ route('posts.show', $post) }}" class="flex items-center"><img
+                                <div>
+                                    <a class="flex items-center"><img
                                             src="https://tcpacy.fr/img/team/thibautMeslin.jpg"
                                             alt="avatar" class="hidden object-cover w-8 h-8 mx-3 rounded-full sm:block">
                                         <h1 class="text-gray-400">{{ $post->user->name }}</h1>
-                                    </a></div>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
