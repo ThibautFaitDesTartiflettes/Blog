@@ -133,7 +133,7 @@ class PostController extends Controller
     /**
      * Add like to database.
      *
-     * @param  \App\Models\Post  $post
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function like(int $id)
