@@ -19,3 +19,4 @@ Route::resource('posts', PostController::class)->except('index');
 Route::get('/{categoryId?}', [PostController::class, 'index'])->name('posts.index');
 Route::post('/recherche', [PostController::class, 'search'])->name('posts.search');
 Route::post('/commentaire', [PostController::class, 'comment'])->name('posts.comment');
+Route::get('/like/{id}', [PostController::class, 'like'])->name('posts.like');

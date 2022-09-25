@@ -17,9 +17,22 @@
             <div class="w-12 h-1 bg-orange-600 rounded mt-2 mb-4"></div>
             <p class="text-base text-gray-400">{{ $post->user->email }}</p>
           </div>
+          <div class="flex items-center text-center justify-center mt-5">
+            <div class="flex flex-col items-center text-center justify-center">
+                <img class="w-6 h-6" src="{{ url('img/icons/eye.svg') }}" alt="Eye">
+                <p class="text-base text-gray-300 mt-1">{{ $post->views }}</p>
+            </div>
+            <div class="ml-8 flex flex-col items-center text-center justify-center">
+                <a class="cursor-pointer" href="{{ route('posts.like', $post->id) }}">
+                    <img class="w-6 h-6" src="{{ url('img/icons/likes.svg') }}" alt="Thumb">
+                </a>
+                <p class="text-base text-gray-300 mt-1">{{ $post->likes }}</p>
+            </div>
+          </div>
         </div>
         <div class="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
-          <h1 class="title-font text-4xl text-gray-200 mb-16">{{ $post->title }}</h1>
+          <a href="{{ route('posts.index', $post->category->id) }}" class="px-3 py-2 text-gray-200 bg-orange-600 rounded-lg">{{ $post->category->name }}</a>
+          <h1 class="title-font text-4xl text-gray-200 mt-5 mb-10">{{ $post->title }}</h1>
           <p class="leading-relaxed text-lg mb-4 text-gray-300">{{ $post->content }}<p>
         </div>
       </div>

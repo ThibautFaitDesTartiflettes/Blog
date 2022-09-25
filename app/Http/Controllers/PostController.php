@@ -129,4 +129,18 @@ class PostController extends Controller
 
         return redirect()->route('posts.show', $comment->post_id);
     }
+
+    /**
+     * Add like to database.
+     *
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function like(int $id)
+    {
+        $post = Post::find($id);
+        $post->update(['likes' => $post->likes + 1]);
+
+        return redirect()->route('posts.show', $post);
+    }
 }
