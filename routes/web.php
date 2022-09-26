@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,15 @@ use App\Http\Controllers\PostController;
 */
 
 Route::resource('posts', PostController::class)->except('index');
+
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/connect', [LoginController::class, 'connect'])->name('connect');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/deconnexion', [LoginController::class, 'logout'])->name('logout');
+
+    Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('Admin');
+});
 
 Route::get('/{categoryId?}', [PostController::class, 'index'])->name('posts.index');
 Route::post('/recherche', [PostController::class, 'search'])->name('posts.search');

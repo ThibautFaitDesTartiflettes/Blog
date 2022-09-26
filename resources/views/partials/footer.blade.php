@@ -1,6 +1,6 @@
 <footer class="text-gray-300 bg-stone-800 body-font">
   <div class="container px-5 py-3 mx-auto flex items-center sm:flex-row flex-col text-gray-200">
-    <a class="flex title-font font-medium items-center md:justify-start justify-center">
+    <a href="{{ route('login') }}" class="flex title-font font-medium items-center md:justify-start justify-center">
         <span class="ml-3 text-xl">Thibaut Meslin</span>
     </a>
     <a href="#">

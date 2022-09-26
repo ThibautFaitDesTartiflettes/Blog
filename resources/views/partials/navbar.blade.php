@@ -22,6 +22,11 @@
         <nav class="flex flex-wrap items-center text-base justify-center cursor-pointer space-x-4">
             <a class="link link-underline" href="https://thibaut-meslin.fr">Portfolio</a>
             <a class="link link-underline" href="https://thibaut-meslin.fr/contact">Contactez-moi</a>
+            @auth
+                <div class="w-[2px] h-10 rounded-full bg-orange-600"></div>
+                <a class="link link-underline" href="{{ route('Admin') }}">Dashboard</a>
+                <a class="link link-underline" href="{{ route('logout') }}">Déconnexion</a>
+            @endauth
         </nav>
     </div>
 </header>
