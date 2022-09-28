@@ -24,6 +24,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/deconnexion', [LoginController::class, 'logout'])->name('logout');
 
     Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('Admin');
+    Route::post('/dashboard/addAct', [PostController::class, 'store'])->name('posts.store');
 });
 
 Route::get('/{categoryId?}', [PostController::class, 'index'])->name('posts.index');

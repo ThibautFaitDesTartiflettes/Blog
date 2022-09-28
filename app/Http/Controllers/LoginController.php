@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -16,7 +17,10 @@ class LoginController extends Controller
     public function dashboard()
     {
         if (Auth::check()) {
-            return view('dashboard');
+
+            $categories = Category::all();
+
+            return view('dashboard', compact('categories'));
         } else {
             return redirect()->route('login');
         }

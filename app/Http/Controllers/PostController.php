@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Comment;
 use App\Models\Category;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
-use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -43,12 +44,26 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorePostRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePostRequest $request)
+    public function store(Request $request)
     {
-        //
+        $imageName = $request->file('avatar')->storeAs(
+            '/images',
+            $request->file('avatar')->getClientOriginalName(),
+            'public'
+        );
+
+        Post::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'image' => $imageName,
+            'category_id' => $request->category,
+            'user_id' => auth()->user()->id,
+        ]);
+
+        return redirect()->route('Admin')->with('ArticleAjoute', 'Article ajouté avec succès');
     }
 
     /**
