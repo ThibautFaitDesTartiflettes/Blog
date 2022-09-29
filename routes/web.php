@@ -25,6 +25,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('Admin');
     Route::post('/dashboard/addAct', [PostController::class, 'store'])->name('posts.store');
+    Route::put('/dashboard/updateAct', [PostController::class, 'update'])->name('posts.update');
+    Route::delete('/dashboard/deleteAct', [PostController::class, 'destroy'])->name('posts.destroy');
 });
 
 Route::get('/{categoryId?}', [PostController::class, 'index'])->name('posts.index');

@@ -655,6 +655,10 @@ video {
   margin-left: 3rem;
   margin-right: 3rem;
 }
+.my-5 {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
 .mb-5 {
   margin-bottom: 1.25rem;
 }
@@ -717,6 +721,12 @@ video {
 }
 .-ml-px {
   margin-left: -1px;
+}
+.mt-24 {
+  margin-top: 6rem;
+}
+.mt-14 {
+  margin-top: 3.5rem;
 }
 .block {
   display: block;

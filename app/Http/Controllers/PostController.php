@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Comment;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
@@ -63,7 +64,7 @@ class PostController extends Controller
             'user_id' => auth()->user()->id,
         ]);
 
-        return redirect()->route('Admin')->with('ArticleAjoute', 'Article ajouté avec succès');
+        return redirect()->route('Admin')->with('Article', 'Article ajouté avec succès');
     }
 
     /**
@@ -96,13 +97,36 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatePostRequest  $request
-     * @param  \App\Models\Post  $post
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePostRequest $request, Post $post)
+    public function update(Request $request)
     {
-        //
+        if ($request->file('avatar') != null) {
+
+            $imagePath = $request->file('avatar')->storeAs(
+                '/images',
+                $request->file('avatar')->getClientOriginalName(),
+                'public'
+            );
+
+            $data = array(
+                'title' => $request->title,
+                'content' => $request->content,
+                'category_id' => $request->category,
+                'image' => $imagePath,
+            );
+        } else {
+            $data = array(
+                'title' => $request->title,
+                'content' => $request->content,
+                'category_id' => $request->category,
+            );
+        }
+
+        DB::table('posts')->where('id', $request->id)->update($data);
+
+        return redirect()->route('Admin')->with('Article', 'Article modifié avec succès');
     }
 
     /**
@@ -111,9 +135,11 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Request $request)
     {
-        //
+        Post::destroy($request->select_id);
+
+        return redirect()->route('Admin')->with('Article', 'Article supprimé avec succès');
     }
 
     /**

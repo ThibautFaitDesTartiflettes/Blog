@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,13 +15,20 @@ class LoginController extends Controller
         return view('login');
     }
 
-    public function dashboard()
+    public function dashboard(Request $request)
     {
         if (Auth::check()) {
 
+            $posts = Post::orderBy('created_at', 'desc')->get();
             $categories = Category::all();
 
-            return view('dashboard', compact('categories'));
+            if ($request->query('id') != null) {
+                $selectedPost = Post::find($request->query('id'));
+            } else {
+                $selectedPost = $posts->first();
+            }
+
+            return view('dashboard', compact('categories', 'posts', 'selectedPost'));
         } else {
             return redirect()->route('login');
         }
