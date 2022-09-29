@@ -13,9 +13,15 @@
                                     <span class="font-light text-gray-400">
                                         {{ $post->created_at->format('d M Y') }}
                                     </span>
+                                    @if (isset($post->category->id))
                                     <a href="{{ route('posts.index', $post->category->id) }}"
                                         class="px-2 py-1 font-medium text-gray-50 bg-orange-600 rounded">{{ $post->category->name }}
                                     </a>
+                                    @else
+                                    <a
+                                        class="px-2 py-1 font-medium text-gray-50 bg-orange-600 rounded">Autres
+                                    </a>
+                                    @endif
                                 </div>
                                 <div class="mt-2">
                                     <a class="text-2xl font-medium text-gray-200">
@@ -72,11 +78,18 @@
                         <h1 class="mb-4 text-xl font-medium text-gray-200">Catégories</h1>
                         <div class="flex flex-col max-w-sm px-4 py-6 mx-auto bg-stone-800 rounded-lg shadow-md">
                             <ul class="list-disc ml-5 text-gray-300">
-                                @foreach ($categories as $cat)
-                                <li class="mb-3">
-                                    <a href="{{ route('posts.index', $cat->id) }}" class="hover:ml-1 text-gray-300 hover:bg-orange-600 hover:py-2 hover:px-3 hover:rounded duration-200 ease-in-out">{{ $cat->name }}</a>
-                                </li>
-                                @endforeach
+                                @if ($categories->isNotEmpty())
+                                    @foreach ($categories as $cat)
+                                    <li class="mb-3">
+                                        <a href="{{ route('posts.index', $cat->id) }}" class="hover:ml-1 text-gray-300 hover:bg-orange-600 hover:py-2 hover:px-3 hover:rounded duration-200 ease-in-out">{{ $cat->name }}</a>
+                                    </li>
+                                    @endforeach
+                                @else
+                                <div class="w-full h-full flex flex-col justify-center items-center">
+                                    <img class="w-64 h-64" src="img/icons/ghost.svg" alt="Ghost">
+                                    <p class="text-center mt-5 text-gray-300 text-lg">Aucune catégorie pour le moment</p>
+                                </div>
+                                @endif
                             </ul>
                         </div>
                     </div>
