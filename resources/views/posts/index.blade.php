@@ -5,39 +5,46 @@
         <div class="px-6 py-8">
             <div class="container flex justify-between mx-auto">
                 <div class="w-full lg:w-8/12">
-                    @foreach ($posts as $post)
-                    <div class="mt-6">
-                        <div class="max-w-4xl px-10 py-6 mx-auto bg-stone-800 rounded-lg shadow-md">
-                            <div class="flex items-center justify-between">
-                                <span class="font-light text-gray-400">
-                                    {{ $post->created_at->format('d M Y') }}
-                                </span>
-                                <a href="{{ route('posts.index', $post->category->id) }}"
-                                    class="px-2 py-1 font-medium text-gray-50 bg-orange-600 rounded">{{ $post->category->name }}
-                                </a>
-                            </div>
-                            <div class="mt-2">
-                                <a class="text-2xl font-medium text-gray-200">
-                                    {{ $post->title }}
-                                </a>
-                                <p class="mt-2 text-gray-300">
-                                    {{ Str::limit($post->content, 120) }}
-                                </p>
-                            </div>
-                            <div class="flex items-center justify-between mt-4">
-                                <a href="{{ route('posts.show', $post) }}"
-                                    class="text-sky-700 link-underline-sky">Lire plus</a>
-                                <div>
-                                    <a class="flex items-center"><img
-                                            src="https://tcpacy.fr/img/team/thibautMeslin.jpg"
-                                            alt="avatar" class="hidden object-cover w-8 h-8 mx-3 rounded-full sm:block">
-                                        <h1 class="text-gray-400">{{ $post->user->name }}</h1>
+                    @if ($posts->isNotEmpty())
+                        @foreach ($posts as $post)
+                        <div class="mt-6">
+                            <div class="max-w-4xl px-10 py-6 mx-auto bg-stone-800 rounded-lg shadow-md">
+                                <div class="flex items-center justify-between">
+                                    <span class="font-light text-gray-400">
+                                        {{ $post->created_at->format('d M Y') }}
+                                    </span>
+                                    <a href="{{ route('posts.index', $post->category->id) }}"
+                                        class="px-2 py-1 font-medium text-gray-50 bg-orange-600 rounded">{{ $post->category->name }}
                                     </a>
+                                </div>
+                                <div class="mt-2">
+                                    <a class="text-2xl font-medium text-gray-200">
+                                        {{ $post->title }}
+                                    </a>
+                                    <p class="mt-2 text-gray-300">
+                                        {{ Str::limit($post->content, 120) }}
+                                    </p>
+                                </div>
+                                <div class="flex items-center justify-between mt-4">
+                                    <a href="{{ route('posts.show', $post) }}"
+                                        class="text-sky-700 link-underline-sky">Lire plus</a>
+                                    <div>
+                                        <a class="flex items-center"><img
+                                                src="https://tcpacy.fr/img/team/thibautMeslin.jpg"
+                                                alt="avatar" class="hidden object-cover w-8 h-8 mx-3 rounded-full sm:block">
+                                            <h1 class="text-gray-400">{{ $post->user->name }}</h1>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        @endforeach
+                    @else
+                    <div class="w-full h-full flex flex-col justify-center items-center">
+                        <img class="w-64 h-64" src="img/icons/ghost.svg" alt="Ghost">
+                        <p class="text-center mt-5 text-gray-300 text-lg">Aucun article pour le moment</p>
                     </div>
-                    @endforeach
+                    @endif
                     <div class="mt-8">
                         <div class="flex items-center justify-center">
                             {!! $posts->links('pagination::tailwind') !!}
