@@ -17,10 +17,6 @@
                                     <a href="{{ route('posts.index', $post->category->id) }}"
                                         class="px-2 py-1 font-medium text-gray-50 bg-orange-600 rounded">{{ $post->category->name }}
                                     </a>
-                                    @else
-                                    <a
-                                        class="px-2 py-1 font-medium text-gray-50 bg-orange-600 rounded">Autres
-                                    </a>
                                     @endif
                                 </div>
                                 <div class="mt-2">
