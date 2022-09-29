@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
@@ -27,6 +28,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/dashboard/addAct', [PostController::class, 'store'])->name('posts.store');
     Route::put('/dashboard/updateAct', [PostController::class, 'update'])->name('posts.update');
     Route::delete('/dashboard/deleteAct', [PostController::class, 'destroy'])->name('posts.destroy');
+    Route::post('/dashboard/addCategory', [CategoryController::class, 'store'])->name('categories.store');
+    Route::put('/dashboard/updateCategory', [CategoryController::class, 'update'])->name('categories.update');
+    Route::post('/dashboard/showCategory', [CategoryController::class, 'show'])->name('categories.show');
 });
 
 Route::get('/{categoryId?}', [PostController::class, 'index'])->name('posts.index');
