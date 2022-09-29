@@ -147,7 +147,7 @@
                 </form>
             </div>
             <div class="tab-panel hidden" id="tabs-suppr" role="tabpanel" aria-labelledby="tabs-cat-tab">
-                <div class="grid w-full overflow-hidden grid-cols-2 grid-rows-4 gap-4 min-h-[70vh]">
+                <div class="grid w-full overflow-hidden grid-cols-1 md:grid-cols-2 grid-rows-4 gap-4 min-h-[70vh]">
                     @if (!Session::has('selectedCat'))
                         <div class="box flex justify-center items-center">
                             <h1 class="text-2xl font-semibold">Ajouter une catégorie</h1>
@@ -192,7 +192,7 @@
                         </div>
                     @endif
                     <div class="box row-span-5">
-                        <table class="bg-stone-800 text-gray-900 w-full shadow-none">
+                        <table class="bg-stone-800 text-gray-900 w-full shadow-none mt-5 md:mt-auto">
                             <thead>
                                 <tr>
                                     <th class="bg-stone-800 text-gray-200 p-3">Nom</th>
@@ -204,11 +204,11 @@
                                     <tr class="bg-stone-800 text-gray-300 text-center">
                                         <td class="p-2 border-t border-black">{{ $cat->name }}</td>
                                         <td class="p-2 border-t border-black">
-                                            <form action="{{ route('categories.show') }}" method="POST">
+                                            <form action="{{ route('categories.show') }}" method="POST" class="flex items-center justify-center flex-wrap">
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{ $cat->id }}">
-                                                <button type="submit" name="submit" value="modify" class="w-1/3 bg-orange-600 text-white font-bold py-2 px-4 rounded">Modifier</button>
-                                                <button type="submit" name="submit" value="delete" class="w-1/3 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Supprimer</button>
+                                                <button type="submit" name="submit" value="modify" class="w-full mb-2 xl:mb-auto xl:mr-2 xl:w-1/3 bg-orange-600 text-white font-bold py-2 px-4 rounded">Modifier</button>
+                                                <button type="submit" name="submit" value="delete" class="w-full xl:w-1/3 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Supprimer</button>
                                             </form>
                                         </td>
                                     </tr>
