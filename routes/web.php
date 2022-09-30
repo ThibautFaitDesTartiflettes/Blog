@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/dashboard/showCategory', [CategoryController::class, 'show'])->name('categories.show');
 });
 
+Route::get('mention-legales', function () { return view('legal-notice'); })->name('mention-legales');
 Route::get('/{categoryId?}', [PostController::class, 'index'])->name('posts.index');
 Route::post('/recherche', [PostController::class, 'search'])->name('posts.search');
 Route::post('/commentaire', [PostController::class, 'comment'])->name('posts.comment');

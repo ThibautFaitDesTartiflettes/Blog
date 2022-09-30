@@ -3,7 +3,7 @@
     <a href="{{ route('login') }}" class="flex title-font font-medium items-center md:justify-start justify-center">
         <span class="ml-3 text-xl">Thibaut Meslin</span>
     </a>
-    <a href="#">
+    <a href="{{ route('mention-legales') }}">
         <p class="text-sm  sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2022 ThibautMeslin</p>
     </a>
     <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
