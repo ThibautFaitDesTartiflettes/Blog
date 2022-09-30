@@ -84,6 +84,7 @@
                 </form>
             </div>
             <div class="tab-panel hidden" id="tabs-modif" role="tabpanel" aria-labelledby="tabs-modif-tab">
+                @if ($posts->isNotEmpty())
                 <select onchange="selectFun()" id="select_modif" name="select_id" class="bg-stone-800 w-full h-1/2 my-5 border border-gray-300 text-gray-300 text-sm rounded-md block p-2.5">
                     @foreach ($posts as $pst)
                         <option value="{{ $pst->id }}" {{ $selectedPost->id == $pst->id ? 'selected' : '' }}>{{ $pst->title }}</option>
@@ -127,8 +128,15 @@
                         </div>
                     </div>
                 </form>
+                @else
+                <div class="w-full h-full flex flex-col justify-center items-center">
+                    <img class="w-64 h-64" src="img/icons/ghost.svg" alt="Ghost">
+                    <p class="text-center mt-5 text-gray-300 text-lg">Aucun article à modifier</p>
+                </div>
+                @endif
             </div>
             <div class="tab-panel hidden" id="tabs-suppr" role="tabpanel" aria-labelledby="tabs-suppr-tab">
+                @if ($posts->isNotEmpty())
                 <form class="mt-14" action="{{ route('posts.destroy') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('DELETE')
@@ -145,6 +153,12 @@
                         </button>
                     </div>
                 </form>
+                @else
+                <div class="w-full h-full flex flex-col justify-center items-center">
+                    <img class="w-64 h-64" src="img/icons/ghost.svg" alt="Ghost">
+                    <p class="text-center mt-5 text-gray-300 text-lg">Aucun article à supprimer</p>
+                </div>
+                @endif
             </div>
             <div class="tab-panel hidden" id="tabs-suppr" role="tabpanel" aria-labelledby="tabs-cat-tab">
                 <div class="grid w-full overflow-hidden grid-cols-1 md:grid-cols-2 grid-rows-4 gap-4 min-h-[70vh]">
