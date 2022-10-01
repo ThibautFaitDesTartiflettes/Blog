@@ -58,7 +58,7 @@ class PostController extends Controller
 
         Post::create([
             'title' => $request->title,
-            'content' => $request->content,
+            'content' => nl2br($request->content),
             'image' => $imageName,
             'category_id' => $request->category,
             'user_id' => auth()->user()->id,
@@ -112,14 +112,14 @@ class PostController extends Controller
 
             $data = array(
                 'title' => $request->title,
-                'content' => $request->content,
+                'content' => nl2br($request->content),
                 'category_id' => $request->category,
                 'image' => $imagePath,
             );
         } else {
             $data = array(
                 'title' => $request->title,
-                'content' => $request->content,
+                'content' => nl2br($request->content),
                 'category_id' => $request->category,
             );
         }

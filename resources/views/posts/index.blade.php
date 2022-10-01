@@ -24,7 +24,7 @@
                                         {{ $post->title }}
                                     </a>
                                     <p class="mt-2 text-gray-300">
-                                        {{ Str::limit($post->content, 120) }}
+                                        {!! preg_replace("/<br\W*?\/>/", "\n", Str::limit($post->content, 120)) !!}
                                     </p>
                                 </div>
                                 <div class="flex items-center justify-between mt-4">

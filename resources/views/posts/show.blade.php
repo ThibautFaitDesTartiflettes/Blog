@@ -33,7 +33,7 @@
         <div class="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
           <a href="{{ route('posts.index', $post->category->id) }}" class="px-3 py-2 text-gray-200 bg-orange-600 rounded-lg">{{ $post->category->name }}</a>
           <h1 class="title-font text-4xl text-gray-200 mt-5 mb-10">{{ $post->title }}</h1>
-          <p class="leading-relaxed text-lg mb-4 text-gray-300">{{ $post->content }}<p>
+          <p class="leading-relaxed text-lg mb-4 text-gray-300">{!! $post->content !!}<p>
         </div>
       </div>
       <div class="w-full h-[2px] mt-10 bg-orange-600"></div>
